@@ -1,6 +1,6 @@
 {
   "name": "kinspeed/magento2-module-schools",
-  "description": "a kinspeed module developed for schooltrends to manage all the schools. developed by luke paoloni.",
+  "description": "a kinspeed module developed for schooltrends. developed by luke paoloni.",
   "require": {
     "php": "~7.0.0"
   },

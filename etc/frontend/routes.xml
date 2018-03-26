@@ -1,15 +1,16 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
  * routes
+ *
  * @copyright Copyright © 2017 Kinspeed. All rights reserved.
  * @author    luke.paoloni@kinspeed.com
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
-    <router id="admin">
-        <route id="kinspeed_schools" frontName="kinspeed_schools">
-            <module name="Kinspeed_Schools" />
+    <router id="standard">
+        <route id="school" frontName="school">
+            <module name="Kinspeed_Schools"/>
         </route>
     </router>
 </config>
