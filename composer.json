@@ -1,0 +1,20 @@
+{
+  "name": "kinspeed/magento2-module-schools",
+  "description": "a kinspeed module developed for schooltrends to manage all the schools. developed by luke paoloni.",
+  "require": {
+    "php": "~7.0.0"
+  },
+  "type": "magento2-module",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Kinspeed\\Schools\\": ""
+    }
+  }
+}

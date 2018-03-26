@@ -1,0 +1,17 @@
+
+5. Set From server side Validations:
+
+    Kinspeed\Schools\Controller\Adminhtml\School\Validate:
+
+    /**
+     * Check if required fields is not empty
+     *
+     * @param array $data
+     */
+    public function validateRequireEntries(array $data)
+    {
+        $requiredFields = [
+            'identifier' => __('School Identifier'),
+        ];
+
+        //...
