@@ -16,7 +16,7 @@
              resource="Magento_Customer::customer" />
 
         <add id="Kinspeed_Schools::school"
-             title="School"
+             title="Schools"
              module="Kinspeed_Schools"
              sortOrder="0"
              parent="Kinspeed_Schools::first_level"
