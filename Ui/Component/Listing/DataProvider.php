@@ -24,7 +24,11 @@ class DataProvider extends UiDataProvider
                 'is_active',
                 'school_name',
                 'postcode',
-                'pupils_on_roll'
+                'pupils_on_roll',
+                'town',
+                'website_address',
+                'show_school',
+                'active_customer'
                                    ]); // Add here needed EAV attributes to display on grid
 
         return parent::searchResultToOutput($searchResult);

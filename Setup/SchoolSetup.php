@@ -96,13 +96,13 @@ class SchoolSetup extends EavSetup
             'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
         ];
         
-        $attributes['region_id'] = [
-            'type' => 'static',
-            'label' => 'Region',
+        $attributes['county_id'] = [
+            'type' => 'varchar',
+            'label' => 'County',
             'input' => 'text',
             'required' => false, //true/false
             'sort_order' => 4,
-            'source' => 'Magento\Customer\Model\ResourceModel\Address\Attribute\Source\Region',
+            'source' => 'Kinspeed\Address\Model\ResourceModel\Address\Attribute\Source\County',
             'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
             'group' => 'School',
             'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
@@ -122,12 +122,11 @@ class SchoolSetup extends EavSetup
             'type' => 'varchar',
             'label' => 'Logo',
             'input' => 'image',
-            'backend' => 'Kinspeed\Schools\Model\School\Attribute\Backend\Image',
+            'backend' => 'Kinspeed\Schools\Model\Logo',
             'required' => false, //true/false
             'sort_order' => 6,
             'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
             'group' => 'School',
-            'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
         ];
         $attributes['folder_name'] = [
             'type' => 'varchar',

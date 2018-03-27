@@ -50,7 +50,7 @@ class Index extends Action
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Kinspeed_Schools::school');
-        $resultPage->getConfig()->getTitle()->prepend(__('School'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Schools'));
 
         return $resultPage;
     }

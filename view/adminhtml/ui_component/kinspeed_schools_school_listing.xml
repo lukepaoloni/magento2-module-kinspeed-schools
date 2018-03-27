@@ -215,51 +215,62 @@
                 </item>
             </argument>
         </column>
-        <field name="school_name">
+        <column name="school_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <!-- validators here... -->
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">School Name</item>
                     <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">School Name</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="sortOrder" xsi:type="string">1</item>
                 </item>
             </argument>
-        </field>
-        <field name="town">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">Town</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="sortOrder" xsi:type="string">2</item>
-                </item>
-            </argument>
-        </field>
+        </column>
 
-        <field name="postcode">
+        <column name="town">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <!-- validators here... -->
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Town</item>
                     <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">Postcode</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="sortOrder" xsi:type="string">3</item>
                 </item>
             </argument>
-        </field>
-        <field name="website_address">
+        </column>
+
+        <column name="postcode">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <!-- validators here... -->
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Postcode</item>
                     <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" translate="true" xsi:type="string">Website Address</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="sortOrder" xsi:type="string">4</item>
                 </item>
             </argument>
-        </field>
+        </column>
+
+        <column name="website_address">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <!-- validators here... -->
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Website Address</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>
+
         <column name="pupils_on_roll">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -305,6 +316,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="sortOrder" xsi:type="number">999</item>
                 </item>
             </argument>
         </actionsColumn>
