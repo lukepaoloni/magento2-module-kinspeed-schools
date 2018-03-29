@@ -1,68 +1,63 @@
 <?php
+/**
+ * installSchema.php
+ *
+ * @copyright Copyright © 2017 Kinspeed. All rights reserved.
+ * @author    luke.paoloni@kinspeed.com
+ */
+namespace Kinspeed\Schools\Setup;
+
+use Magento\Framework\DB\Ddl\Table;
+use Magento\Framework\Setup\InstallSchemaInterface;
+use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\SchemaSetupInterface;
+use Kinspeed\Schools\Setup\EavTablesSetupFactory;
+
+/**
+ * @codeCoverageIgnore
+ */
+class InstallSchema implements InstallSchemaInterface
+{
     /**
-     * installSchema.php
+     * @var EavTablesSetupFactory
+     */
+    protected $eavTablesSetupFactory;
+
+    /**
+     * Init
      *
-     * @copyright Copyright © 2017 Kinspeed. All rights reserved.
-     * @author    luke.paoloni@kinspeed.com
+     * @internal param EavTablesSetupFactory $EavTablesSetupFactory
      */
-
-    namespace Kinspeed\Schools\Setup;
-
-    use Magento\Framework\DB\Ddl\Table;
-    use Magento\Framework\Setup\InstallSchemaInterface;
-    use Magento\Framework\Setup\ModuleContextInterface;
-    use Magento\Framework\Setup\SchemaSetupInterface;
-    use Kinspeed\Schools\Setup\EavTablesSetupFactory;
+    public function __construct(EavTablesSetupFactory $eavTablesSetupFactory)
+    {
+        $this->eavTablesSetupFactory = $eavTablesSetupFactory;
+    }
 
     /**
-     * @codeCoverageIgnore
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    class InstallSchema implements InstallSchemaInterface
+    public function install(SchemaSetupInterface $setup, ModuleContextInterface $context) //@codingStandardsIgnoreLine
     {
+        $setup->startSetup();
         /**
-         * @var EavTablesSetupFactory
+         * Create School Suppliers Table
          */
-        protected $eavTablesSetupFactory;
-
+        $this->createSchoolSuppliers($setup);
         /**
-         * Init
-         *
-         * @internal param EavTablesSetupFactory $EavTablesSetupFactory
+         * Create School Types Table
          */
-        public function __construct(EavTablesSetupFactory $eavTablesSetupFactory)
-        {
-            $this->eavTablesSetupFactory = $eavTablesSetupFactory;
-        }
-
+        $this->createSchoolTypes($setup);
         /**
-         * @param \Magento\Framework\Setup\SchemaSetupInterface   $setup
-         * @param \Magento\Framework\Setup\ModuleContextInterface $context
-         *
-         * @return string|void
-         * @throws \Zend_Db_Exception
+         * Create Main Table
          */
-        public function install(SchemaSetupInterface $setup, ModuleContextInterface $context
-        ) //@codingStandardsIgnoreLine
-        {
-            $setup->startSetup();
-            /**
-             * Create Main Table
-             */
-            $this->createSchoolsMainTable($setup);
-            /**
-             * Create School Suppliers Table
-             */
-            $this->createSchoolSuppliers($setup);
-            /**
-             * Create School Types Table
-             */
-            $this->createSchoolTypes($setup);
-            /** @var \Kinspeed\Schools\Setup\EavTablesSetup $eavTablesSetup */
-            $eavTablesSetup = $this->eavTablesSetupFactory->create(['setup' => $setup]);
-            $eavTablesSetup->createEavTables(SchoolSetup::ENTITY_TYPE_CODE);
-            $setup->endSetup();
-        }
-
+        $this->createSchoolsMainTable($setup);
+        /** @var \Kinspeed\Schools\Setup\EavTablesSetup $eavTablesSetup */
+        $eavTablesSetup = $this->eavTablesSetupFactory->create(['setup' => $setup]);
+        $eavTablesSetup->createEavTables(SchoolSetup::ENTITY_TYPE_CODE);
+        $setup->endSetup();
+    }
         /**
          * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
          *
@@ -86,36 +81,6 @@
                 null,
                 ['nullable' => false, 'unsigned' => true, 'default' => true],
                 'Is Active'
-            )->addColumn(
-                'school_type_idno',
-                Table::TYPE_INTEGER,
-                null,
-                ['nullable' => true, 'unsigned' => true],
-                'School Type ID'
-            )->addForeignKey(
-                $setup->getFkName($tableName, 'school_type_idno', 'kinspeed_schools_school_types', 'entity_id'),
-                'school_type_idno',
-                'kinspeed_schools_school_types',
-                'entity_id',
-                Table::ACTION_CASCADE
-            )->addColumn(
-                'school_supplier_idno',
-                Table::TYPE_INTEGER,
-                null,
-                ['nullable' => true, 'unsigned' => true],
-                'School Supplier ID'
-            )->addForeignKey(
-                $setup->getFkName($tableName, 'school_supplier_idno', 'kinspeed_schools_school_suppliers', 'entity_id'),
-                'school_supplier_idno',
-                'kinspeed_schools_school_suppliers',
-                'entity_id',
-                Table::ACTION_CASCADE
-            )->addColumn(
-                'franchisee_idno',
-                Table::TYPE_INTEGER,
-                null,
-                ['nullable' => true, 'unsigned' => true],
-                'School Franchisee ID'
             );
             $table->addColumn(
                 'created_at',
@@ -163,9 +128,9 @@
                 ['nullable' => false, 'unsigned' => true],
                 'School Type ID'
             )->addForeignKey(
-                $setup->getFkName($tableName, 'school_type_idno', 'kinspeed_schools_school_types', 'entity_id'),
+                $setup->getFkName($tableName, 'school_type_idno', 'kinspeed_schools_types', 'entity_id'),
                 'school_type_id',
-                'kinspeed_schools_school_types',
+                'kinspeed_schools_types',
                 'entity_id',
                 Table::ACTION_CASCADE
             )->addColumn(
@@ -175,9 +140,9 @@
                 ['nullable' => true, 'unsigned' => true],
                 'School Supplier ID'
             )->addForeignKey(
-                $setup->getFkName($tableName, 'school_supplier_idno', 'kinspeed_schools_school_suppliers', 'entity_id'),
+                $setup->getFkName($tableName, 'school_supplier_idno', 'kinspeed_schools_suppliers', 'entity_id'),
                 'school_supplier_idno',
-                'kinspeed_schools_school_suppliers',
+                'kinspeed_schools_suppliers',
                 'entity_id',
                 Table::ACTION_CASCADE
             )->addColumn(
@@ -210,7 +175,7 @@
          */
         private function createSchoolSuppliers($setup)
         {
-            $tableName = 'kinspeed_schools_school_suppliers';
+            $tableName = 'kinspeed_schools_suppliers';
             $table     = $setup->getConnection()->newTable($setup->getTable($tableName));
             $table->addColumn(
                 'entity_id',
@@ -235,7 +200,7 @@
          */
         private function createSchoolTypes($setup)
         {
-            $tableName = 'kinspeed_schools_school_types';
+            $tableName = 'kinspeed_schools_types';
             $table     = $setup->getConnection()->newTable($setup->getTable($tableName));
             $table->addColumn(
                 'entity_id',
@@ -258,4 +223,4 @@
             );
             $setup->getConnection()->createTable($table);
         }
-    }
+}

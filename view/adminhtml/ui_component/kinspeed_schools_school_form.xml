@@ -160,17 +160,70 @@
                 </item>
             </argument>
         </field>
-        <!--<field name="county_id">-->
-            <!--<argument name="data" xsi:type="array">-->
-                <!--<item name="options" xsi:type="object">Kinspeed\Address\Model\ResourceModel\Address\Attribute\Source\County</item>-->
-                <!--<item name="config" xsi:type="array">-->
-                    <!--<item name="label" translate="true" xsi:type="string">County</item>-->
-                    <!--<item name="dataType" xsi:type="string">text</item>-->
-                    <!--<item name="formElement" xsi:type="string">select</item>-->
-                    <!--<item name="sortOrder" xsi:type="string">7</item>-->
-                <!--</item>-->
-            <!--</argument>-->
-        <!--</field>-->
+        <field name="county_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Kinspeed\Address\Model\County\AttributeSet\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">County</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="string">7</item>
+                </item>
+            </argument>
+        </field>
+        <field name="postcode">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" translate="true" xsi:type="string">Postcode</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="sortOrder" xsi:type="string">8</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="school_type_idno">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Kinspeed\Schools\Model\Types\AttributeSet\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">School Types</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="string">9</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="school_supplier_idno">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Kinspeed\Schools\Model\Suppliers\AttributeSet\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">School Supplier</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="string">10</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="logo">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Logo</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="componentType" xsi:type="string">fileUploader</item>
+                    <item name="notice" xsi:type="string" translate="true">Allowed file types: jpeg, gif, png</item>
+                    <item name="maxFileSize" xsi:type="number">2097152</item>
+                    <item name="allowedExtensions" xsi:type="string">jpg jpeg gif png</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="string">kinspeed_schools/file/uploader</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="string">99</item>
+                    <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
+                </item>
+            </argument>
+        </field>
 
 
         <field name="tel">
@@ -214,6 +267,7 @@
             </argument>
         </field>
     </fieldset>
+
     <fieldset name="customer_fieldset">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
@@ -512,6 +566,4 @@
 
 
     </fieldset>
-
-    
 </form>

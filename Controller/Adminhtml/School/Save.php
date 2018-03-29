@@ -9,6 +9,7 @@ namespace Kinspeed\Schools\Controller\Adminhtml\School;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Kinspeed\Schools\Model\School\Attribute\Backend\ImageFactory;
 use Kinspeed\Schools\Model\SchoolFactory;
 
 class Save extends Action
@@ -58,6 +59,8 @@ class Save extends Action
                 $objectInstance->load($data['entity_id']);
                 $params['entity_id'] = $data['entity_id'];
             }
+            $imageData = $this->preparedImagesData($data);
+            $data = array_merge($data, $imageData);
             $objectInstance->addData($data);
 
             $this->_eventManager->dispatch(
@@ -84,6 +87,18 @@ class Save extends Action
             return $resultRedirect->setPath('*/*/edit', $params);
         }
         return $resultRedirect->setPath('*/*/');
+    }
+
+    protected function preparedImagesData(array $data): array
+    {
+        $imagesData = [];
+        $imageAttributeCodes = array_keys(ImageFactory::IMAGE_ATTRIBUTE_CODES);
+        foreach ($imageAttributeCodes as $imageAttrCode) {
+            if (empty($data[$imageAttrCode])) {
+                $imagesData[$imageAttrCode]['delete'] = true;
+            }
+        }
+        return $imagesData;
     }
 
 }

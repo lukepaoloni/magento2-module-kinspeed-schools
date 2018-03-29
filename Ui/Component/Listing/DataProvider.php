@@ -28,6 +28,8 @@ class DataProvider extends UiDataProvider
                 'town',
                 'website_address',
                 'show_school',
+                'active_customer',
+                'logo',
                 'active_customer'
                                    ]); // Add here needed EAV attributes to display on grid
 

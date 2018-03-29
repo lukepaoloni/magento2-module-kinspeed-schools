@@ -28,11 +28,6 @@ class EavTablesSetup
         $this->setup = $setup;
     }
 
-    /**
-     * @param $entityCode
-     *
-     * @throws \Zend_Db_Exception
-     */
     public function createEavTables($entityCode)
     {
         $this->createEAVMainTable($entityCode);
@@ -43,11 +38,6 @@ class EavTablesSetup
         $this->createEntityTable($entityCode, 'varchar', Table::TYPE_TEXT, 255);
     }
 
-    /**
-     * @param $entityCode
-     *
-     * @throws \Zend_Db_Exception
-     */
     protected function createEAVMainTable($entityCode)
     {
         $tableName = $entityCode . '_eav_attribute';
@@ -114,14 +104,6 @@ class EavTablesSetup
         $this->setup->getConnection()->createTable($table);
     }
 
-    /**
-     * @param      $entityCode
-     * @param      $type
-     * @param      $valueType
-     * @param null $valueLength
-     *
-     * @throws \Zend_Db_Exception
-     */
     protected function createEntityTable($entityCode, $type, $valueType, $valueLength = null)
     {
         $tableName = $entityCode . '_entity_' . $type;

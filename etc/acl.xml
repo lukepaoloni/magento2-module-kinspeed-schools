@@ -10,7 +10,9 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Kinspeed_Schools::school" title="School" sortOrder="10" />
+                <resource id="Kinspeed_Schools::school" title="Schools" sortOrder="10" />
+                <resource id="Kinspeed_Schools::types" title="Types" sortOrder="20" />
+                <resource id="Kinspeed_Schools::suppliers" title="Suppliers" sortOrder="30" />
             </resource>
         </resources>
     </acl>

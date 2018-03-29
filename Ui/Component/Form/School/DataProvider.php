@@ -10,6 +10,8 @@ namespace Kinspeed\Schools\Ui\Component\Form\School;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool;
 use Magento\Ui\DataProvider\AbstractDataProvider;
+use Kinspeed\Schools\Model\School;
+use Kinspeed\Schools\Model\School\Attribute\Backend\ImageFactory;
 use Kinspeed\Schools\Model\ResourceModel\School\Collection;
 
 class DataProvider extends AbstractDataProvider
@@ -71,16 +73,26 @@ class DataProvider extends AbstractDataProvider
     {
         if (!$this->loadedData) {
             $storeId = (int)$this->request->getParam('store');
-            $this->collection
+            $school = $this->collection
                 ->setStoreId($storeId)
-                ->addAttributeToSelect('*');
-            $items = $this->collection->getItems();
-            foreach ($items as $item) {
-                $item->setStoreId($storeId);
-                $this->loadedData[$item->getId()] = $item->getData();
-                break;
-            }
+                ->addAttributeToSelect('*')
+                ->getFirstItem();
+            $school->setStoreId($storeId);
+            $school->addData($this->schoolImagesData($school));
+            $this->loadedData[$school->getId()] = $school->getData();
         }
         return $this->loadedData;
+    }
+
+    private function schoolImagesData(School $school): array
+    {
+        $imagesData = [];
+        $imageAttributeCodes = array_keys(ImageFactory::IMAGE_ATTRIBUTE_CODES);
+        foreach ($imageAttributeCodes as $imageAttrCode) {
+            if ($school->getData($imageAttrCode)) {
+                $imagesData[$imageAttrCode] = $school->getImageValueForForm($imageAttrCode);
+            }
+        }
+        return $imagesData;
     }
 }
