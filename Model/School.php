@@ -69,9 +69,9 @@ class School extends AbstractModel implements IdentityInterface
         $this->imageFactory = $imageFactory;
     }
 
-    public function getName()
+    public function getSchoolName()
     {
-        return 'test';
+        return $this->getData('school_name');
     }
 
     public function getUrl()
