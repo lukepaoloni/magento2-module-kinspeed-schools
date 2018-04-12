@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Kinspeed, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ * Luke Paoloni
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Adminhtml\Edit\Tab\View\PersonalInfo $block */#
+    if ( !empty($block->getCustomer()->getCustomAttribute('school_name')))
+        $schoolName = $block->getCustomer()->getCustomAttribute('school_name')->getValue();
+    else
+        $schoolName = '';
+?>
+<?php if ( strtolower($block->getGroupName()) == 'schools' ): ?>
+    <div class="fieldset-wrapper customer-information">
+        <div class="fieldset-wrapper-title">
+            <span class="title"><?= $block->escapeHtml(__('School Information')) ?></span>
+        </div>
+        <table class="admin__table-secondary">
+            <tbody>
+                <?= $block->getChildHtml() ?>
+                <tr>
+                    <th><?= $block->escapeHtml(__('School:')) ?></th>
+                        <td>
+                            <?= $schoolName; ?>
+                        </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>

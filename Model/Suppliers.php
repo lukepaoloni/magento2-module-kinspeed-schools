@@ -66,4 +66,9 @@ class Suppliers extends AbstractModel implements IdentityInterface
         }
         return $this;
     }
+
+    public function getName()
+    {
+        return $this->getData('supplier_name');
+    }
 }

@@ -66,4 +66,14 @@ class Types extends AbstractModel implements IdentityInterface
         }
         return $this;
     }
+
+    public function getName()
+    {
+        return $this->getData('school_type');
+    }
+
+    public function getVatStatus()
+    {
+        return $this->getData('vat_status');
+    }
 }

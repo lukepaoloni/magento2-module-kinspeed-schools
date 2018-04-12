@@ -42,9 +42,12 @@ class Validate extends Action
         $requiredFields = [
             'school_name' => __('School\'s Name'),
             'address_1' => __('School\'s Address Line 1'),
-            'address_2' => __('School\'s Address Line 2'),
             'town' => __('School\'s Town'),
             'postcode' => __('School\'s Postcode'),
+            'email' => __('Email'),
+            'tel' => __('Telephone'),
+            'first_name' => __('First name'),
+            'last_name' => __('Surname')
         ];
         foreach ($data as $field => $value) {
             if (in_array($field, array_keys($requiredFields)) && $value == '') {

@@ -152,16 +152,6 @@
                 'group'          => 'School',
                 'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
             ];
-            $attributes['logo']            = [
-                'type'       => 'varchar',
-                'label'      => 'Logo',
-                'input'      => 'image',
-                'backend'    => 'Kinspeed\Schools\Model\Logo',
-                'required'   => false, //true/false
-                'sort_order' => 6,
-                'global'     => ScopedAttributeInterface::SCOPE_GLOBAL,
-                'group'      => 'School',
-            ];
             $attributes['folder_name']     = [
                 'type'           => 'varchar',
                 'label'          => 'Folder',
@@ -265,6 +255,16 @@
             /*
              * School Settings
              */
+            // $attributes['linked_category']           = [
+            //     'type'       => 'int',
+            //     'label'      => 'Linked Category',
+            //     'input'      => 'input',
+            //     'required'   => false, //true/false
+            //     'visible'    => false,
+            //     'sort_order' => 999,
+            //     'global'     => ScopedAttributeInterface::SCOPE_GLOBAL,
+            //     'group'      => 'Settings',
+            // ];
             $attributes['active_customer']           = [
                 'type'       => 'int',
                 'label'      => 'Active Customer',

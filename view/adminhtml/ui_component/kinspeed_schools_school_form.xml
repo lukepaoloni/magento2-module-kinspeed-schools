@@ -19,6 +19,9 @@
         <item name="label" xsi:type="string" translate="true">School Form</item>
         <item name="buttons" xsi:type="array">
             <item name="back" xsi:type="string">Kinspeed\Schools\Block\Adminhtml\School\Edit\BackButton</item>
+            <item name="generate" xsi:type="string">Kinspeed\Schools\Block\Adminhtml\School\Edit\GenerateButton</item>
+            <item name="category" xsi:type="string">Kinspeed\Schools\Block\Adminhtml\School\Edit\CategoryButton</item>
+            <item name="customer" xsi:type="string">Kinspeed\Schools\Block\Adminhtml\School\Edit\CustomerButton</item>
             <item name="delete" xsi:type="string">Kinspeed\Schools\Block\Adminhtml\School\Edit\DeleteButton</item>
             <item name="save" xsi:type="string">Kinspeed\Schools\Block\Adminhtml\School\Edit\SaveButton</item>
             <item name="save_and_continue" xsi:type="string">Kinspeed\Schools\Block\Adminhtml\School\Edit\SaveAndContinueButton</item>
@@ -46,7 +49,7 @@
     <fieldset name="main_fieldset">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">Schools</item>
+                <item name="label" xsi:type="string" translate="true">School</item>
                 <item name="collapsible" xsi:type="boolean">true</item>
                 <item name="opened" xsi:type="boolean">false</item>
                 <item name="sortOrder" xsi:type="number">0</item>
@@ -90,9 +93,35 @@
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
                     <item name="default" xsi:type="string">1</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string">It will remove them from the SchoolFinder if it is disabled.</item>
+                    </item>
                 </item>
             </argument>
         </field>
+        <field name="active_customer">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">0</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Active Customer</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string">This will determine which schools are active customers with SchoolTrends. You can't generate a customer and a category if this is disabled.</item>
+                    </item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+
         <field name="school_name">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -103,6 +132,9 @@
                     <item name="sortOrder" xsi:type="string">2</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string">The URL for the category will be taken from the School Name and the Postcode. Example: All Saints Primary School (DE4 3GY) = school/all-saints-primary-school/de4-3gy</item>
                     </item>
                 </item>
             </argument>
@@ -129,9 +161,6 @@
                     <item name="label" translate="true" xsi:type="string">Address 2</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="sortOrder" xsi:type="string">4</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
                 </item>
             </argument>
         </field>
@@ -220,7 +249,6 @@
                         <item name="url" xsi:type="string">kinspeed_schools/file/uploader</item>
                     </item>
                     <item name="sortOrder" xsi:type="string">99</item>
-                    <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
                 </item>
             </argument>
         </field>

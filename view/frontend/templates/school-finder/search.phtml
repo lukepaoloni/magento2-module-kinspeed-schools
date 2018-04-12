@@ -1,0 +1,35 @@
+<?php
+    /*
+     * schoolfinder
+     *
+     * @copyright Copyright © 2017 Kinspeed. All rights reserved.
+     * @author    luke.paoloni@kinspeed.com
+     */
+?>
+<?php
+    /** @var \Kinspeed\Schools\Block\SchoolFinder\Search $block */
+    // Add your template code here ...
+
+?>
+
+<div class="floating-box">
+    <form action="<?= $block->getFormAction(); ?>" method="get" id="school-finder__form" class="school-finder__form form search">
+        <div class="form-title">
+            <h2 class="headline-3 bold">
+                SchoolFinder
+            </h2>
+        </div>
+        <div class="school-finder__wrapper">
+            <div class="school-finder__search-wrapper">
+                <input id="school-finder__search" class="school-finder__search" type="search" placeholder="Search by school name, or any postcode..." minlength="3" maxlength="128" autocomplete="off" name="q" />
+            </div>
+            <div class="school-finder__search-btn">
+                <button type="submit" class="action btn btn-secondary btn-search btn-round btn-lg">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="results">
+</div>
+

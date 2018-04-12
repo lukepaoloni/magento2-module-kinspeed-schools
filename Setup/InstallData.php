@@ -12,6 +12,9 @@ use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 
+use Magento\Eav\Setup\EavSetup;
+use Magento\Eav\Setup\EavSetupFactory;
+
 /**
  * @codeCoverageIgnore
  */
@@ -23,15 +26,17 @@ class InstallData implements InstallDataInterface
      * @var SchoolSetupFactory
      */
     protected $schoolSetupFactory;
+    private $eavSetupFactory;
 
     /**
      * Init
      *
      * @param SchoolSetupFactory $schoolSetupFactory
      */
-    public function __construct(SchoolSetupFactory $schoolSetupFactory)
+    public function __construct(SchoolSetupFactory $schoolSetupFactory, EavSetupFactory $eavSetupFactory)
     {
         $this->schoolSetupFactory = $schoolSetupFactory;
+        $this->eavSetupFactory = $eavSetupFactory;
     }
 
     /**
@@ -52,5 +57,28 @@ class InstallData implements InstallDataInterface
         }
 
         $setup->endSetup();
+
+        $eavSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        $eavSetup->addAttribute(\Magento\Catalog\Model\Category::ENTITY, 'linked_school', [
+            'type'     => 'int',
+            'label'    => 'Linked School',
+            'input'    => 'text',
+            'visible'  => false,
+            'default'  => null,
+            'required' => false,
+            'unique' => true,
+            'global'   => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL
+        ]);
+        $eavSetup->addAttribute(\Magento\Customer\Model\Customer::ENTITY, 'linked_school', [
+            'type'     => 'int',
+            'label'    => 'Linked School',
+            'input'    => 'text',
+            'visible'  => false,
+            'default'  => null,
+            'unique' => true,
+            'required' => false,
+            'global'   => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL
+        ]);
+
     }
 }

@@ -1,0 +1,25 @@
+<?php
+    //TODO: Need to prevent Generate button from being clicked if required fields haven't been entered.
+?>
+<script>
+    require([
+    	'jquery'
+    ], function ( $ ) {
+    	$(document).ready(function (  ) {
+    		var $schoolName = $('input[name="school_name"]');
+    		var $email = $('input[name="email"]');
+    		var $firstname = $('input[name="first_name"]');
+    		var $surname = $('input[name="last_name"]');
+    		var $generateBtn = $('button#generate');
+    		console.log($schoolName);
+//    		if (
+//    			$schoolName.value.length === 0 &&
+//                    $email.value.length === 0 &&
+//                    $firstname.value.length === 0 &&
+//                    $surname.value.length === 0
+//            ) {
+//			    $generateBtn.addClass('disabled');
+//            }
+	    });
+    });
+</script>

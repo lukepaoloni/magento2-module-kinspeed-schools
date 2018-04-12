@@ -12,5 +12,8 @@
         <route id="schools" frontName="schools">
             <module name="Kinspeed_Schools"/>
         </route>
+        <route id="schoolsearch" frontName="schoolsearch">
+            <module name="Kinspeed_Schools"/>
+        </route>
     </router>
 </config>
