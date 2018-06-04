@@ -8,9 +8,12 @@
  
 namespace Kinspeed\Schools\Controller\Result;
 
+use Magento\Catalog\Model\CategoryFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Action\Context;
 use \Kinspeed\Schools\Model\ResourceModel\School\CollectionFactory as SchoolCollection;
@@ -57,9 +60,9 @@ class Index extends Action
         SchoolCollection $schoolCollection,
         Context $context,
         PageFactory $pageFactory,
-        \Magento\Framework\Controller\ResultFactory $resultFactory,
-        \Magento\Catalog\Model\CategoryFactory $categoryFactory,
-        \Magento\Framework\Registry $_coreRegistry
+        ResultFactory $resultFactory,
+        CategoryFactory $categoryFactory,
+        Registry $_coreRegistry
     )
     {
         $this->pageFactory = $pageFactory;
@@ -81,6 +84,7 @@ class Index extends Action
         $query = $this->getRequest()->getParam('q');
         $result = $this->resultJsonFactory->create();
         $resultRedirect = $this->resultRedirectFactory->create();
+
         $schoolCollection = $this->schoolCollection->create();
         $category = $this->categoryFactory->create()->loadByAttribute('name', 'SchoolFinder');
         try {
@@ -89,17 +93,11 @@ class Index extends Action
                 [
                     'like' => '%'.$query.'%'
                 ]);
-//            $schoolCollection->addAttributeToFilter('is_active', true);
             $schoolCollection->addAttributeToFilter('show_school', true);
-            $searchQuery = $schoolCollection->getSelect()->__toString();
             $result->setData(
                 [
-                    'query' => $query,
-                    'result' => $schoolCollection->getData(),
-                    'sql_query' => $searchQuery,
-                    'category_url' => $category->getUrl()
-                ]
-            );
+                    $schoolCollection->getData()
+                ]);
         }
         catch (LocalizedException $e) {
             $result->setData(

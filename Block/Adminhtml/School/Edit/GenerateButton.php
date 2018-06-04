@@ -85,7 +85,7 @@ class GenerateButton implements ButtonProviderInterface
                     'url' => $this->getGenerateUrl()
                 ],
                 'on_click'       =>
-                    'deleteConfirm(\'' . __("Are you sure you want to do this?") . '\', \'' . $this->getGenerateUrl(
+                    'deleteConfirm(\'' . __("Are you sure you want to do this? If so, make sure the data has been saved first.") . '\', \'' . $this->getGenerateUrl(
                     ) . '\')',
                 'sort_order'     => 30,
             ];

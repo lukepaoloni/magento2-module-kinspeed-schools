@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * kinspeed_schools_register_index.xml
+ *
+ * @copyright Copyright © 2018 Kinspeed. All rights reserved.
+ * @author    luke.paoloni@kinspeed.com
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="hide-title"/>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Schools</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Schools</item>
+                    <item name="label" xsi:type="string">Schools</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}schools</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Register</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Register</item>
+                    <item name="label" xsi:type="string">Register</item>
+                </argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="head.additional">
+            <block class="Faonni\ReCaptcha\Block\Head" name="faonni.recaptcha.head" template="Faonni_ReCaptcha::head.phtml" />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="kinspeed.schools.find.school.container" htmlClass="school-finder__container" htmlTag="div">
+                <block class="Kinspeed\Schools\Block\Register\Search" name="kinspeed.schools.finder" template="Kinspeed_Schools::register/account/search.phtml"/>
+            </container>
+            <block class="Kinspeed\Schools\Block\Register\Account" name="kinspeed.schools.create" template="Kinspeed_Schools::register/account/create.phtml">
+                <container name="customer.form.register.fields.before" as="schools_form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="school-form-before"/>
+                <container name="school_register_form_additional_info" htmlTag="div" htmlClass="school-register-form additional">
+                    <block class="Faonni\ReCaptcha\Block\Form" name="faonni.recaptcha.form" after="-" template="Faonni_ReCaptcha::form.phtml"/>
+                </container>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

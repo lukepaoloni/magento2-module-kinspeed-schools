@@ -2,7 +2,8 @@
   "name": "kinspeed/magento2-module-schools",
   "description": "Kinspeed Magento2 module Schools",
   "require": {
-    "php": "~7.0.0"
+    "php": "~7.0.0",
+    "faonni/module-re-captcha": "2.0.10"
   },
   "type": "magento2-module",
   "autoload": {

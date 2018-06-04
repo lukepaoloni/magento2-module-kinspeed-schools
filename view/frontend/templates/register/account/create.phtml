@@ -1,0 +1,128 @@
+<?php /* Extensions placeholder */ ?>
+<?php
+/** @var \Kinspeed\Schools\Block\Register\Account $block  */
+// Add your template code here ...
+?>
+
+<?= $block->getChildHtml('schools_form_fields_before') ?>
+<form class="school-register form-school-register" action="<?php /* @escapeNotVerified */
+    echo $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data"
+      autocomplete="off">
+    <input type="hidden" name="form_key" class="hidden" hidden value="<?= $block->getFormKey(); ?>">
+    <?php /*
+    <input type="hidden" name="school_id" id="school_id" class="hidden" hidden />
+    */ ?>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <small id="formHelp" class="form-text text-muted">
+                       <?= __('Have an account?') ?> <br/> <?= __('Click'); ?> <a href="<?= $block->getUrl('school/login'); ?>"><?= __('here'); ?></a> <?= __('to login'); ?>.
+                    </small>
+                </div>
+                <div class="col-6">
+                    <h4 class="headline-15 form-detail text-right">
+                        <?= __('School details') ?>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="school_name" class="sr-only"><?= __('School name'); ?></label>
+
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="school_name"
+                   name="school[name]"
+                   data-validate="{required:true}"
+                   placeholder="<?= __('School name') ?>"
+                   required />
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="street" class="sr-only"><?= __('Street address'); ?></label>
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="street"
+                   name="school[street]"
+                   data-validate="{required:true, 'validate-street':true}"
+                   placeholder="<?= __('Street address') ?>"
+                   required />
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="city" class="sr-only"><?= __('City'); ?></label>
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="city"
+                   name="school[city]"
+                   data-validate="{required:true}"
+                   placeholder="<?= __('City') ?>"
+                   required />
+        </div>
+        <div class="col-6 col-sm-3">
+            <label for="postcode" class="sr-only"><?= __('Street address'); ?></label>
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="postcode"
+                   name="school[postcode]"
+                   data-validate="{required:true}"
+                   placeholder="<?= __('Postcode'); ?>"
+                   required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="headline-15 form-detail text-right">
+                <?= __('Personal details') ?>
+            </h4>
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="first_name" class="sr-only"><?= __('First name'); ?></label>
+
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="first_name"
+                   name="customer[name]"
+                   data-validate="{required:true}"
+                   placeholder="<?= __('First name') ?>"
+                   required />
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="surname" class="sr-only"><?= __('Surname'); ?></label>
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="surname"
+                   name="customer[surname]"
+                   data-validate="{required:true}"
+                   placeholder="<?= __('Surname') ?>"
+                   required />
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="email" class="sr-only"><?= __('Email address'); ?></label>
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="school_email"
+                   name="customer[email]"
+                   data-validate="{required:true, 'validate-email':true}"
+                   placeholder="<?= __('Email address') ?>"
+                   required />
+        </div>
+        <div class="col-12 col-sm-6">
+            <label for="phone_num" class="sr-only"><?= __('Phone number'); ?></label>
+            <input type="text"
+                   class="form-control st-input st-required required"
+                   id="phone_num"
+                   name="customer[phone]"
+                   data-validate="{required:true}"
+                   placeholder="<?= __('Phone number'); ?>"
+                   required />
+        </div>
+    </div>
+    <?php echo $block->getChildHtml( 'school_register_form_additional_info' ); ?>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="btn btn-primary st-btn-primary st-btn-wide text-center rounded" title="<?php /* @escapeNotVerified */
+                echo __( 'Register' ) ?>"><span><?php /* @escapeNotVerified */
+                        echo __( 'Register' ) ?></span></button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,52 @@
+<?php
+    /*
+     * schoolfinder
+     *
+     * @copyright Copyright © 2017 Kinspeed. All rights reserved.
+     * @author    luke.paoloni@kinspeed.com
+     */
+?>
+<?php
+    /** @var \Kinspeed\Schools\Block\SchoolFinder\Schools $block */
+    // Add your template code here ...
+
+?>
+<div class="container mt-4">
+    <div class="accordion" id="accordion" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": true}}'>
+        <div data-role="collapsible" class="card">
+            <div data-role="trigger" class="card-header">
+                <h3 class="text-bold mb-0"><?= __('View School List'); ?></h3>
+            </div>
+        </div>
+        <div data-role="content" class="collapse ">
+            <div class="card-body border">
+
+                <?php foreach ($block->getSchools(true) as $school) :?>
+                    <?php /** @var \Kinspeed\Schools\Model\School $school */ ?>
+                    <div class="col-12 mt-2 mb-2">
+                        <div class="card">
+                            <?php if ($school->getLogo()): ?>
+                                <img src="<?= $school->getLogo(); ?>" alt="<?= $school->getSchoolName(); ?>" class="float-left card-img">
+                            <?php endif; ?>
+                            <div class="card-body">
+                                <h3 class="card-title"><?= $school->getSchoolName() ?></h3>
+                                <?php if ($school->isActiveCustomer()): ?>
+                                    <a href="<?= $school->getPath() ?>" class="btn btn-primary"><?= __('View Store'); ?></a>
+                                <?php else: ?>
+                                    <a href="<?= $school->getPath() ?>" class="btn btn-secondary"><?= __('Register Interest'); ?></a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <?php if ($block->getPagerHtml()): ?>
+                    <div class="mx-auto mt-4">
+                        <div class="order-products-toolbar toolbar bottom text-center">
+                            <?php echo $block->getPagerHtml(); ?>
+                        </div>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    </div>
+</div>

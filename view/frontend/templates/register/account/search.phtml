@@ -1,0 +1,53 @@
+<?php
+    /** @var \Kinspeed\Schools\Block\SchoolFinder\Search $block */
+    // Add your template code here ...
+?>
+<div class="row">
+    <div class="col-12">
+        <input id="school-finder__search" class="form-control st-search-input2"
+               type="search"
+               placeholder="Search for your school..."
+               minlength="3"
+               maxlength="258"
+               autocomplete="off"
+               name="term"/>
+    </div>
+</div>
+<script>
+	require([
+		'jquery',
+		'jquery/ui'
+	], function ( $ ) {
+		var $schoolSearch = $('#school-finder__search'),
+		    $results = $('.results'),
+		    cache = {},
+		    $schoolNameInput = $('#school_name'),
+		    $streetInput = $('#street'),
+		    $cityInput = $('#city'),
+		    $postcodeInput = $('#postcode'),
+            $schoolIdInput = $('#school_id');
+
+		$schoolSearch.autocomplete({
+			minLength: 3,
+			source: function ( request, response ) {
+				var term = request.term;
+				var isAjax = true;
+				if (term in cache) {
+					response(cache[term]);
+					return;
+				}
+				$.getJSON("<?= $block->getAjaxUrl(); ?>", request, function ( data, status, xhr, isAjax ) {
+					cache[term] = data;
+					response(data);
+				});
+			},
+			select: function ( event, ui ) {
+                $schoolIdInput.val(ui.item.id);
+				$schoolNameInput.val(ui.item.name);
+				$streetInput.val(ui.item.address);
+				$cityInput.val(ui.item.city);
+				$postcodeInput.val(ui.item.postcode);
+			}
+		});
+	});
+</script>

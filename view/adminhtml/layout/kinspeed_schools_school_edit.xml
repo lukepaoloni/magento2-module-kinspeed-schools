@@ -18,7 +18,6 @@
         </referenceContainer>
         <referenceContainer name="content">
             <uiComponent name="kinspeed_schools_school_form"/>
-            <block class="Kinspeed\Schools\Block\Adminhtml\School" name="kinspeed.schools.admin.scripts" template="Kinspeed_Schools::school/edit/scripts.phtml" />
         </referenceContainer>
     </body>
 </page>

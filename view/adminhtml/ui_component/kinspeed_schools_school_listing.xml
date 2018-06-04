@@ -14,6 +14,12 @@
         </item>
         <item name="spinner" xsi:type="string">kinspeed_schools_school_columns</item>
         <item name="buttons" xsi:type="array">
+            <item name="sync" xsi:type="array">
+                <item name="name" xsi:type="string">sync</item>
+                <item name="label" xsi:type="string" translate="true">Sync with SchoolFinder</item>
+                <item name="class" xsi:type="string">action-default</item>
+                <item name="url" xsi:type="string">*/*/sync</item>
+            </item>
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
                 <item name="label" xsi:type="string" translate="true">Add New School</item>
@@ -267,6 +273,48 @@
                 </item>
             </argument>
         </column>
+        <column name="longitude">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <!-- validators here... -->
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Longitude</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>
+        <column name="latitude">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <!-- validators here... -->
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Latitude</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>
+        <column name="registered_amount_interest">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="integer" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Total Interested</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>
+
         <column name="website_address">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * schoolfinder_index_index.xml
+ *
+ * @copyright Copyright © 2017 Kinspeed. All rights reserved.
+ * @author    luke.paoloni@kinspeed.com
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>School Finder</title>
+        <css src="Limesharp_Stockists::css/stockists.css"/>
+    </head>
+    <body>
+        <attribute name="class" value="hide-page-title" />
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">SchoolFinder</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">SchoolFinder</item>
+                    <item name="label" xsi:type="string">SchoolFinder</item>
+                </argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Kinspeed\Schools\Block\SchoolFinder\Search" name="kinspeed.schools.search" template="school-finder/search.phtml" />
+            <container name="school.finder.map.container" label="School Finder Map" htmlTag="div" htmlClass="school-finder__map mt-5 p-5 border rounded">
+                <block class="Kinspeed\Schools\Block\SchoolFinder\Schools" name="schools.map" template="Kinspeed_Schools::school-finder/map.phtml"/>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

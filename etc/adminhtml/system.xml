@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © 2018 Kinspeed. All rights reserved.
+    Package: Kinspeed_Schools
+    Author: Luke Paoloni <luke.paoloni@kinspeed.com>
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="kinspeed_schools" sortOrder="0">
+            <label>Kinspeed</label>
+        </tab>
+        <section id="kinspeed_schools" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Schools</label>
+            <tab>kinspeed_schools</tab>
+            <resource>Kinspeed_Schools::school</resource>
+            <group id="school_map" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Map settings</label>
+
+                <field id="api_key" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Google Maps API Key</label>
+                    <validate>required-entry</validate>
+                    <comment>
+                        <![CDATA[Please change this value to your API key. This default key may stop working due to daily limits. This field is required.]]>
+                    </comment>
+                    <tooltip>To get a google maps api key just login to your google account and go https://developers.google.com/maps/documentation/javascript/get-api-key and press on "get key".</tooltip>
+                </field>
+
+                <field id="zoom" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Zoom</label>
+                    <comment>
+                        <![CDATA[Zoom level when loading the map, default is 13. Insert values between 1 and 20.]]>
+                    </comment>
+                </field>
+
+                <field id="latitude" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Latitude</label>
+                    <comment>
+                        <![CDATA[Default latitude when loading the map. It is used for centering the map at load time]]>
+                    </comment>
+                </field>
+
+                <field id="longitude" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Longitude</label>
+                    <comment>
+                        <![CDATA[Default longitude when loading the map. It is used for centering the map at load time]]>
+                    </comment>
+                </field>
+
+                <field id="radius" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Radius</label>
+                    <comment>
+                        <![CDATA[Radius when user searches your stores, default is 25 miles. Insert values in miles.]]>
+                    </comment>
+                </field>
+
+                <field id="map_style" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>School Maps Style</label>
+                    <source_model>Kinspeed\Schools\Model\School\MapStyles</source_model>
+                    <comment>
+                        <![CDATA[Popular map styles from snazzymaps]]>
+                    </comment>
+                    <tooltip>If you want a preview of your styles go to https://snazzymaps.com and select the one you like.</tooltip>
+                </field>
+
+                <field id="map_pin" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Map Pin Icon</label>
+                    <backend_model>Kinspeed\Schools\Model\School\MapPin</backend_model>
+                    <base_url type="media" scope_info="1">kinspeed_schools</base_url>
+                    <comment>
+                        <![CDATA[A default pin image will be used if left blank]]>
+                    </comment>
+                    <tooltip>Allowed file types: jpg, jpeg, gif, png, svg.</tooltip>
+                </field>
+
+                <field id="unit_length" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Unit of Length</label>
+                    <source_model>Kinspeed\Schools\Model\School\MapUnits</source_model>
+                    <comment>
+                        <![CDATA[Chose between km and miles, default is miles.]]>
+                    </comment>
+                </field>
+
+                <field id="ask_location" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Ask For Location</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[On page load ask the user for his location and show the closest store]]>
+                    </comment>
+                    <tooltip>If this setting is enabled when the user lands on the page then it will be asked for his geolocation and then the closest stores to him will appear. The user must have a browser that supports geolocation. Be aware that some browsers, such as chrome, do not support geolocation over unencrypted http.</tooltip>
+                </field>
+            </group>
+
+            <group id="school_radius" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Radius Style</label>
+                <field id="circle_stroke_weight" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Radius Stroke Weight</label>
+                    <comment>
+                        <![CDATA[Stroke weight when user searches a location. Expects integer or float.]]>
+                    </comment>
+                </field>
+
+                <field id="circle_stroke_opacity" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Radius Stroke Opacity</label>
+                    <comment>
+                        <![CDATA[Stroke opacity when user searches a location. Expects integer or float.]]>
+                    </comment>
+                </field>
+
+                <field id="circle_stroke_color" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Radius Stroke Color</label>
+                    <comment>
+                        <![CDATA[Stroke color when user searches a location. Expects hex value.]]>
+                    </comment>
+                </field>
+
+                <field id="circle_fill_opacity" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Radius Fill Opacity</label>
+                    <comment>
+                        <![CDATA[FIll opacity when user searches a location. Expects integer or float.]]>
+                    </comment>
+                </field>
+
+                <field id="circle_fill_color" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Radius Fill Color</label>
+                    <comment>
+                        <![CDATA[FIll color when user searches a location. Expects hex value.]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="school_settings" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <field id="category_id" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Category ID</label>
+                    <validate>required-entry validate-digits</validate>
+                    <comment>
+                        <![CDATA[ID of category that you want that schools to be generated under.]]>
+                    </comment>
+                </field>
+                <field id="customer_group_id" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Customer Group ID</label>
+                    <validate>required-entry validate-digits</validate>
+                    <comment>
+                        <![CDATA[ID of customer group for Schools.]]>
+                    </comment>
+                </field>
+                <field id="email" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email</label>
+                    <validate>required-entry validate-email</validate>
+                    <comment>
+                        <![CDATA[This is the email address that will send to schools when generating their accounts.]]>
+                    </comment>
+                </field>
+                <field id="name" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Name</label>
+                    <validate>required-entry</validate>
+                    <comment>
+                        <![CDATA[This is the name that will send to schools when generating their accounts.]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

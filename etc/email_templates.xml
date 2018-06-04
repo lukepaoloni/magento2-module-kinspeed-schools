@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © 2018 Kinspeed. All rights reserved.
+    Package: Schools
+    Author: Luke Paoloni <luke.paoloni@kinspeed.com>
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:Magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="send_school_customer_register_form" label="Create School Customer" file="send_school_customer_register_form.html" type="html" module="Kinspeed_Schools" area="frontend"/>
+</config>

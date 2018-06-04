@@ -41,6 +41,5 @@
              action="kinspeed_schools/suppliers"
              resource="Kinspeed_Schools::suppliers"/>
 
-
     </menu>
 </config>

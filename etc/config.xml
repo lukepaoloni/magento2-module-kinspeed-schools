@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © 2018 Kinspeed. All rights reserved.
+    Package: Schools
+    Author: Luke Paoloni <luke.paoloni@kinspeed.com>
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <kinspeed_schools>
+            <school_map>
+                <api_key>AIzaSyDQoYGuJE3CogwzmFTzp7Eb8LpL5Tp-swo</api_key>
+                <unit_length>default</unit_length>
+                <zoom>13</zoom>
+                <latitude>51.4935057</latitude>
+                <longitude>-0.1506621</longitude>
+                <radius>40233.6</radius>
+                <map_style>default</map_style>
+                <ask_location>1</ask_location>
+            </school_map>
+            <school_radius>
+                <circle_stroke_weight>1</circle_stroke_weight>
+                <circle_stroke_opacity>0.5</circle_stroke_opacity>
+                <circle_stroke_color>#0000A0</circle_stroke_color>
+                <circle_fill_opacity>0.2</circle_fill_opacity>
+                <circle_fill_color>#00FFFF</circle_fill_color>
+            </school_radius>
+        </kinspeed_schools>
+    </default>
+</config>

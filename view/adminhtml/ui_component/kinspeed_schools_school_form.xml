@@ -132,9 +132,10 @@
                     <item name="sortOrder" xsi:type="string">2</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-no-html-tags" xsi:type="boolean">true</item>
                     </item>
                     <item name="tooltip" xsi:type="array">
-                        <item name="description" xsi:type="string">The URL for the category will be taken from the School Name and the Postcode. Example: All Saints Primary School (DE4 3GY) = school/all-saints-primary-school/de4-3gy</item>
+                        <item name="description" xsi:type="string">The URL for the category will be taken from the School Name and the Postcode. Example: All Saints Primary School (DE4 3GY) = https://schooltrends.com/schools/all-saints-primary-school/de4-3gy</item>
                     </item>
                 </item>
             </argument>
@@ -149,6 +150,7 @@
                     <item name="sortOrder" xsi:type="string">3</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-street" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
@@ -197,6 +199,9 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">select</item>
                     <item name="sortOrder" xsi:type="string">7</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
@@ -208,6 +213,47 @@
                     <item name="label" translate="true" xsi:type="string">Postcode</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="sortOrder" xsi:type="string">8</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="country_code">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Directory\Model\Config\Source\Country</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" translate="true" xsi:type="string">Country</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="string">9</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-select" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="longitude">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" translate="true" xsi:type="string">Longitude</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="sortOrder" xsi:type="string">9</item>
+                </item>
+            </argument>
+        </field>
+        <field name="latitude">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" translate="true" xsi:type="string">Latitude</item>
+                    <item name="formElement" xsi:type="string">hidden</item>
+                    <item name="sortOrder" xsi:type="string">9</item>
                 </item>
             </argument>
         </field>
@@ -220,6 +266,10 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">select</item>
                     <item name="sortOrder" xsi:type="string">9</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-select" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
@@ -232,6 +282,10 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">select</item>
                     <item name="sortOrder" xsi:type="string">10</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-select" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
@@ -242,13 +296,17 @@
                     <item name="label" xsi:type="string">Logo</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>
                     <item name="componentType" xsi:type="string">fileUploader</item>
-                    <item name="notice" xsi:type="string" translate="true">Allowed file types: jpeg, gif, png</item>
+                    <item name="notice" xsi:type="string" translate="true">Allowed file types: jpeg, gif, png, svg</item>
                     <item name="maxFileSize" xsi:type="number">2097152</item>
-                    <item name="allowedExtensions" xsi:type="string">jpg jpeg gif png</item>
+                    <item name="allowedExtensions" xsi:type="string">jpg jpeg gif png svg</item>
                     <item name="uploaderConfig" xsi:type="array">
                         <item name="url" xsi:type="string">kinspeed_schools/file/uploader</item>
                     </item>
                     <item name="sortOrder" xsi:type="string">99</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-file" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
@@ -264,6 +322,7 @@
                     <item name="sortOrder" xsi:type="string">8</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="phoneUK" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
@@ -276,6 +335,9 @@
                     <item name="label" translate="true" xsi:type="string">Website Address</item>
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="sortOrder" xsi:type="string">10</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-url" xsi:type="boolean">true</item>
+                    </item>
                 </item>
             </argument>
         </field>
@@ -315,6 +377,7 @@
                     <item name="sortOrder" xsi:type="string">3</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="letters-only" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
@@ -329,6 +392,7 @@
                     <item name="sortOrder" xsi:type="string">4</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="letters-only" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
@@ -359,6 +423,7 @@
                 </item>
             </argument>
         </field>
+
         <field name="notes">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -552,6 +617,26 @@
                 </item>
             </argument>
         </field>
+        <field name="enable_dts_school">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">8</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Enable DTS School</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+
         <field name="enable_ppp_school">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

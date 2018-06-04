@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * kinspeed_schools_register_index.xml
+ *
+ * @copyright Copyright © 2018 Kinspeed. All rights reserved.
+ * @author    luke.paoloni@kinspeed.com
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Schools</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Schools</item>
+                    <item name="label" xsi:type="string">Schools</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}schools</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Register</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Register</item>
+                    <item name="label" xsi:type="string">Register</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}school/register/account</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Interest</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Interest</item>
+                    <item name="label" xsi:type="string">Interest</item>
+                </argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Cms\Block\Block" name="register.school.interest.block">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">block_register_interest</argument>
+                </arguments>
+            </block>
+            <block class="Kinspeed\Schools\Block\Register\Interest" name="register.interest.form" template="Kinspeed_Schools::register/interest.phtml">
+                <container name="form.additional.info" as="form_additional_info"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -24,10 +24,13 @@ class DataProvider extends UiDataProvider
                 'is_active',
                 'school_name',
                 'postcode',
+                'longitude',
+                'latitude',
                 'pupils_on_roll',
                 'town',
                 'website_address',
                 'show_school',
+                'registered_amount_interest',
                 'active_customer',
                 'logo',
                 'active_customer'

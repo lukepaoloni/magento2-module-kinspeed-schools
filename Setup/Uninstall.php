@@ -26,7 +26,8 @@ class Uninstall implements UninstallInterface
         SchoolSetup::ENTITY_TYPE_CODE . '_entity_text',
         SchoolSetup::ENTITY_TYPE_CODE . '_entity_varchar',
         'kinspeed_schools_types',
-        'kinspeed_schools_suppliers'
+        'kinspeed_schools_suppliers',
+        'kinspeed_schools_register_interest'
     ];
 
     /**

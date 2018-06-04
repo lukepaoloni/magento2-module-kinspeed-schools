@@ -45,16 +45,17 @@ class Search extends Template
      */
     public function getFormAction()
     {
-        // companymodule is given in routes.xml
-        // controller_name is folder name inside controller folder
-        // action is php file name inside above controller_name folder
-
-        return $this->getBaseUrl() . 'schoolsearch/result/';
-        // here controller_name is index, action is booking
+        return $this->getBaseUrl() . 'school/finder/';
     }
 
     public function getItems()
     {
-        return $this->_coreRegistry->registry('school_results');
+        $results = $this->_coreRegistry->registry('school_results');
+        return $results;
+    }
+
+    public function getAjaxUrl()
+    {
+        return $this->getUrl('school/finder');
     }
 }

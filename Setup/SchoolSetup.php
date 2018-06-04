@@ -71,6 +71,7 @@
                 'group'          => 'School',
                 'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
             ];
+            
             $attributes['address_2']   = [
                 'type'           => 'varchar',
                 'label'          => 'Address 2',
@@ -80,6 +81,16 @@
                 'global'         => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'group'          => 'School',
                 'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
+            ];
+            $attributes['elastic_search_id'] = [
+                'type' => 'varchar',
+                'label' => 'Elastic_search_id',
+                'input' => 'text',
+                'required' => false, //true/false
+                'sort_order' => 999,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'group' => 'General',
+                //'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
             ];
             $attributes['address_3']   = [
                 'type'           => 'varchar',
@@ -101,10 +112,43 @@
                 'group'          => 'School',
                 'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
             ];
+            $attributes['country_code'] = [
+                'type' => 'varchar',
+                'label' => 'Country',
+                'input' => 'select',
+                'required' => true, //true/false
+                'sort_order' => 6,
+                'source'     => 'Magento\Directory\Model\Config\Source\Country',
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'group' => 'School',
+                'validate_rules' => 'a:2:{s:15:"max_text_length";i:3;s:15:"min_text_length";i:1;}',
+                'default' => 'GB'
+            ];
+
+            $attributes['longitude'] = [
+                'type' => 'varchar',
+                'label' => 'Longitude',
+                'input' => 'text',
+                'required' => false, //true/false
+                'sort_order' => 999,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'group' => 'General'
+            ];
+
+            $attributes['latitude'] = [
+                'type' => 'varchar',
+                'label' => 'Latitude',
+                'input' => 'text',
+                'required' => false, //true/false
+                'sort_order' => 999,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'group' => 'General'
+            ];
+
             $attributes['county_id'] = [
                 'type'           => 'varchar',
                 'label'          => 'County',
-                'input'          => 'text',
+                'input'          => 'select',
                 'required'       => false, //true/false
                 'sort_order'     => 4,
                 'source'         => 'Kinspeed\Address\Model\County\AttributeSet\Options',
@@ -191,6 +235,17 @@
                 'global'     => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'group'      => 'General',
             ];
+            
+            $attributes['registered_amount_interest'] = [
+                'type' => 'int',
+                'label' => 'Registered Amount of Interest',
+                'input' => 'text',
+                'required' => false, //true/false
+                'sort_order' => 9999,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'group' => 'General',
+                //'validate_rules' => 'a:2:{s:15:"max_text_length";i:255;s:15:"min_text_length";i:1;}',
+            ];
         }
 
         private function getCustomersEntity(&$attributes)
@@ -272,6 +327,7 @@
                 'source'     => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
                 'required'   => false, //true/false
                 'sort_order' => 999,
+                'default'    => false,
                 'global'     => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'group'      => 'Settings',
             ];
@@ -364,6 +420,16 @@
                 'sort_order' => 9,
                 'global'     => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'group'      => 'Settings',
+            ];
+            $attributes['enable_dts_school'] = [
+                'type' => 'int',
+                'label' => 'Enable DTS School',
+                'input' => 'select',
+                'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
+                'required' => false, //true/false
+                'sort_order' => 9,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'group' => 'General',
             ];
             $attributes['enable_ppp_school']         = [
                 'type'       => 'int',

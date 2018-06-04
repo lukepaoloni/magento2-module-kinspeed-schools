@@ -1,0 +1,123 @@
+<?php
+    /** @var \Kinspeed\Schools\Block\SchoolFinder\Schools $block */
+    $schools = $block->getSchools();
+?>
+<?php
+    if ($block->getMapPin())
+        $mapPin = $block->getMediaUrl() . "kinspeed_schools/" . $block->getMapPin();
+    else
+        $mapPin = $block->getViewFileUrl("Kinspeed_Schools::images/map-pin.png");
+?>
+<div class="schools-map__container row">
+    <div class="map-side__panel col-12 col-md-2">
+        <div class="directions-panel">
+            <p>Your directions: </p>
+            <p class="change-directions">Change to <span class="walking get-directions" data-directions="WALKING">walking, </span><span class="cycle get-directions" data-directions="BICYCLING">cycling</span>, <span class="transit get-directions" data-directions="TRANSIT">public transport</span> or <span class="driving get-directions" data-directions="DRIVING">driving</span>.</p>
+            <div class="close"></div>
+        </div>
+        <div class="map-search__results">
+            <?php foreach ($schools as $school): ?>
+                <?php /** @var \Kinspeed\Schools\Model\School $school */
+                $dataMarker = $school->getLatitude() . $school->getLongitude(); ?>
+                <div class="results-content border loaded-results" data-marker="<?= $block->escapeHtml($dataMarker); ?>">
+
+                    <?php if ($school->getLogo()) : ?>
+                        <div class="school-logo">
+                            <img src="<?= $block->escapeHtml($school->getLogo()) ?>"
+                                 alt="<?= $block->escapeHtml($school->getSchoolName()) ?>">
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="results-item-data">
+                        <p class="results-title"><?= $block->escapeHtml($school->getSchoolName()) ?></p>
+
+                        <?php if ($school->getAddress()) : ?>
+                            <p class="results-address"><?= $block->escapeHtml($school->getAddress()) ?></p>
+                        <?php endif; ?>
+
+                        <?php if ($school->getTown()) : ?>
+                            <p class="results-address-2">
+                                <?= $block->escapeHtml($school->getTown()) ?>,
+                        <?php else: ?>,
+                        <?php endif; ?>
+                                <?= $block->escapeHtml($school->getPostcode()) ?>
+                            </p>
+                        <p class="results-miles"></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <div class="map-main col-12 col-md-10">
+        <div id="map" style="min-height: 500px; width: 100%; height: 100%;"></div>
+        <div id="infowindow-content">
+            <img src="" width="16" height="16" id="place-icon">
+            <span id="place-name"  class="title"></span><br>
+            <span id="place-address"></span>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "kinspeed_schools": {
+                "map_styles" : "<?php echo $block->getMapStyles() ?>",
+                "map_pin" : "<?php echo $mapPin; ?>",
+                "schools_url": "<?= $block->getBaseUrl() . "school/ajax/schools" ?>",
+                "geolocation" : <?php echo json_encode($block->getLocationSettings()) ?>,
+                "zoom" : <?php echo json_encode($block->getZoomSettings()) ?>,
+                "latitude" : <?php echo json_encode($block->getLatitudeSettings()) ?>,
+                "longitude" : <?php echo json_encode($block->getLongitudeSettings()) ?>,
+                "radius" : <?php echo json_encode($block->getRadiusSettings()) ?>,
+                "apiKey" : "<?php echo $block->getApiKeySettings(); ?>",
+                "unit" : "<?php echo $block->getUnitOfLengthSettings() ?>",
+                "fillColor" : "<?php echo $block->getFillColorSettings() ?>",
+                "fillOpacity" : <?php echo json_encode($block->getFillOpacitySettings()) ?>,
+                "strokeColor" : "<?php echo $block->getStrokeColorSettings() ?>",
+                "strokeOpacity" : <?php echo json_encode($block->getStrokeOpacitySettings()) ?>,
+                "strokeWeight" : <?php echo json_encode($block->getStrokeWeightSettings()) ?>
+            }
+        }
+    }
+</script>
+<script>
+	require( [
+		'jquery',
+		'jquery/ui'
+	], function ( $ ) {
+		$( document ).ready( function () {
+			$('#school-finder__form').submit(function ( e ) {
+				e.preventDefault();
+			});
+            $( '#school-finder__search' ).autocomplete( {
+                source: function ( request, response ) {
+                    getSchools( request, response );
+                },
+                minLength: 3,
+                select: function(event, ui) {
+                    map.setCenter({lat: ui.item.latitude, long: ui.item.longitude});
+                },
+                open: function () {
+                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                },
+                close: function () {
+                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                }
+            } );
+
+            function getSchools ( request, response ) {
+                var url = "<?= $block->getBaseUrl() ?>school/finder";
+                $.ajax( {
+                    dataType: 'json',
+                    url: url,
+                    data: {
+                        term: request.term
+                    },
+                    success: function ( data ) {
+                        response( data );
+                    }
+                } );
+            }
+		});
+	} );
+</script>
